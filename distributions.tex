@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\title{Probablity Distributions}
+\author{Aman}
+\date{Sep 2019}
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\maketitle
+
+\section{Discrete Distributions}
+
+\subsection{Bernoulli distribution}
+A random experiment whose outcome are one of the two types, success $S$ or faliure $F$ with probablity $p$ and $q$ respectively.
+$$ P_X(x)=    \left\{
+\begin{array}{ll}
+     1-p & x= 0 \\
+      p & x= 1 \\
+      0 & x\neq0,1 \\
+\end{array} 
+\right. $$
+\textbf{Moments:} $$E[X^r]=\sum_{x=0}^{x=1}x^rp^x(1-p)^{1-x}=p$$
+
+$$Var(X)=p(1-p)$$
+
+\textbf{Moment generating function:}$$M_X(t)=E[e^{tX}]=1-p+pe^t$$
+
+
+\subsection{Binomial Distribution}
+The probablity of $x$ success and $n-x$ faliures in $n$ independent bernoulli experiments is 
+$$
+P_X(x)=\binom nxp^xq^{n-x}, 0\leq x\leq n
+$$
+
+If $X_1\equiv B(n_1,p)$ and $X_2 \equiv B(n_2,p)$ then 
+$$
+X_1+X_2 \equiv B(n_1+n_2,p)
+$$  
+
+\textbf{Moments:} $$\mu_1^\prime=np$$ $$\mu_2^\prime=n(n-1)p^2+np$$
+\textbf{Moment generating function:}$$M_X(t)=(1-p+pe^t)^n$$
+\textbf{Mgf About Mean:}$$M_{X-np}(t)=(qe^{-pt}+pe^{qt})^n$$
+
+
+\subsection{Poisson Distribution}
+It is the limiting case of Binomial distribution under the following conditions:
+
+1. n, the number of trials tends to infinity i.e. $n \rightarrow \infty$.
+
+2. $np = \lambda$ is a constant.
+
+In limiting case the probability mass function is given by:
+$$
+P_X(x) = \frac{e^{-\lambda}\lambda^{x}}{x!} ,~~~~ x=0,1,2,..
+$$
+
+
+If $X_1\equiv P(\lambda_1)$ and $X_2 \equiv P(\lambda_2)$ then 
+$$
+X_1+X_2 \equiv P(\lambda_1+\lambda_2)
+$$
+\textbf{Moments:}
+$$\mu_1^\prime=\lambda$$
+$$\mu_2^\prime=\lambda+\lambda^2$$
+$$\sigma^2=\lambda$$ 
+$$\mu_{r+1}=\lambda\frac{d\mu_r}{d\lambda}+r\lambda\mu_{r-1}$$
+\textbf{Moment generating function:} $$M_X(t)=e^{\lambda (e^t-1)}$$
+
+\subsection{Negative Binomial Distribution}
+Suppose we have independent Bernoulli trials with probability of success $p$. The random variable $X$ is defined as the number of faliures till the $r^{th}$ success is achieved.
+
+The probability mass function is given by :
+$$
+f(x;r,p)=\binom{x+r-1}{r-1}p^r(1-p)^x
+$$
+\textbf{Moment generating function:} $$M_X(t)=p^r(1-qe^t)^{-r}$$
+
+\subsection{Geometric Probablity Distribution}
+A series of Bernoulli trials is conducted until a success occurs, and a random variable $X$ is defined as the number of faliures in the series
+
+The probablity mass function is given by: 
+
+$$P(X=x)=(1-p)^{x}p$$
+
+Geometric distribution satisfies the property of being memoryless, meaning that if a success has not yet occurred at some given point, the probability distribution of the number of additional failures does not depend on the number of failures already observed. Which can be expressed as
+
+$$P(X \geq r+s|X \geq r)=P(X \geq s)$$
+
+If $X_1$ and $X_2$ are independent random variables which follow geometric distribution, then the conditional distribution of $X_1$ given $ X_1 + X_2 $ is uniform i.e.
+
+$$P(X_1=r | X_1 + X_2 = n) = \frac{1}{n}$$
+
+\section{Continuous Distributions}
+
+\subsection{Uniform Distribution}
+$X$ follows uniform distribution in $[a, b]$ if and only if $(-\infty < a < b < \infty)$
+$$ P_X(x)=    \left\{
+\begin{array}{ll}
+     \frac{1}{b-a} & a<x<b \\
+      0 & otherwise \\
+\end{array} 
+\right. $$
+
+\textbf{Moments:}$$\mu_r^{'}=\frac{b^{r+1}-a^{r+1}}{(r+1)(b-a)}$$
+$$\sigma^2=\frac{(b-a)^2}{12}$$
+
+\subsection{Gamma Distribution}
+$$ P_X(x)=    \left\{
+\begin{array}{ll}
+     \frac{e^{-x}x^{\lambda-1}}{\Gamma(\lambda)} & 0<x<\infty,~~\lambda>0 \\
+      0 & otherwise \\
+\end{array} 
+\right. $$
+
+\textbf{Two Parameter Gamma Distribution}
+$X \equiv \gamma(a, \lambda)$ if and only if:
+$$ P_X(x)=\left\{
+\begin{array}{ll}
+     \frac{a^\lambda e^{-ax}x^{\lambda-1}}{\Gamma(\lambda)} & 0<x<\infty,~\lambda>0, ~ a > 0 \\
+      0 & otherwise \\
+\end{array} 
+\right. $$
+
+\textbf{Moments:} $$\mu_1^\prime=\lambda$$ $$\mu_2^\prime=\lambda(\lambda+1)$$ $$\mu_3^\prime=\lambda(\lambda+1)(\lambda+2)$$
+\textbf{Moment generating function:} $$M_x(t)=\frac{1}{(1-\frac{t}{a})^\lambda}$$
+
+\subsection{Beta Distribution}
+\subsubsection{First Kind}
+$$ P_X(x)=\left\{
+\begin{array}{ll}
+     \frac{x^{\mu-1}(1-x)^{\nu-1}}{\beta (\mu, \nu)}, & 0 < x < 1 \\
+      0 & otherwise \\
+\end{array} 
+\right. $$
+
+\textbf{Moments about origin:}$$\mu_r^\prime = \frac{\Gamma(\mu + r)\Gamma(\mu + \nu)}{\Gamma (\mu + r + \nu) \Gamma (\mu)}$$
+
+
+\subsubsection{Second Kind}
+$$ P_X(x)=\left\{
+\begin{array}{ll}
+     \frac{x^{\mu-1}}{(1+x)^{\mu + \nu} \beta (\mu, \nu)}, & 0 < x < 1 \\
+      0 & otherwise \\
+\end{array} 
+\right .$$
+
+\textbf{Moments about origin:}$$\mu_r^\prime = \frac{\Gamma(\mu + r) \Gamma(\nu + r)}{\Gamma (\mu) \Gamma (\nu)}$$
+
+
+\subsection{Normal Distribution}
+A random variable $X$ is said to follow normal distribution if its probability density function is given by: \\
+
+$$P_X(x; \mu, \sigma^2) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
+
+
+\textbf{Moments:} 
+$$\mu_{2r+1} = 0$$
+$$\mu_{2r} = \frac{2^n \sigma^{2n}}{\sqrt{\pi}}\Gamma\left(n+\frac{1}{2}\right)$$
+\textbf{Moment generating function:} $$M_x(t)=e^{\mu t + \frac{1}{2}\sigma^2 t^2}$$
+
+
+\subsection{Exponential Distribution}
+It is the continuous counterpart of geometric distribution, and models the time we need to wait before a given event occurs, the probablity mass function is given by:
+
+$$P_X(x) = \lambda e^{-\lambda x}$$
+
+This also satisfies memoryless property.
+
+\textbf{Moments:} 
+$$\mu_r^\prime=\frac{r!}{\lambda^r}$$
+$$\mu_r=\frac{D_r}{\lambda^r}$$   
+\textbf{Moment generating function:} $$M_x(t)=\frac{\lambda}{\lambda - t}$$
+
+\subsection{Log-Normal Distribution}
+A positive random variable  $X$ is said to follow Log-Normal distribution if $Y=log(X)$ follows normal distribution. The probability density function is given by:
+
+$$P_X(x) = \frac{1}{\sigma \sqrt{2\pi}x}e^{-\frac{1}{2}(\frac{log(x)-\mu}{\sigma})^2}$$
+
+This also satisfies memoryless property.
+
+\textbf{Moments about origin:} 
+$$\mu_r^\prime=e^{r\mu+\frac{1}{2}r^2\sigma^2}$$
+
+
+% \section{Definitions}
+% \subsection{Bernoulli Trials}
+% A \textbf{Bernoulli Trial} or \textbf{Bernoulli Experiment}, is an experiment satisfying two key properties.
+% \begin{itemize}
+%     \item There are exactly two complementay outcomes, success and faliure.
+%     \item The probablity of success is same everytime the experiment is repeated
+% \end{itemize}
+
+% \subsection{Moments}
+% The moment of order $k$ is the mathematical expectation of $X^k$, if it exists.
+% $$E(X^k)=\int_{-\infty}^{\infty} x^kf(x)dx$$
+
+\end{document}
